@@ -1,8 +1,11 @@
 package br.com.alura.agenda.dao;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import br.com.alura.agenda.modelo.Aluno;
 
 public class AlunoDao extends SQLiteOpenHelper {
 
@@ -21,5 +24,16 @@ public class AlunoDao extends SQLiteOpenHelper {
         String sql = "DROP TABLE IF EXISTS aluno;";
         db.execSQL(sql);
         onCreate(db);
+    }
+
+    public void gravar(Aluno aluno) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues dados = new ContentValues();
+        dados.put("nome", aluno.getNome());
+        dados.put("endereco", aluno.getEndereco());
+        dados.put("telefone", aluno.getTelefone());
+        dados.put("site", aluno.getSite());
+        dados.put("nome", aluno.getNota());
+        db.insert("aluno", null, dados);
     }
 }
