@@ -22,7 +22,7 @@ public class FormularioActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario);
-        helper = new FormularioHelper(this);
+        this.helper = new FormularioHelper(this);
     }
 
     @Override
