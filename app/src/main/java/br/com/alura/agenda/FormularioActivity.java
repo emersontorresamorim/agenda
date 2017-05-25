@@ -30,8 +30,6 @@ public class FormularioActivity extends AppCompatActivity {
         if (aluno != null) {
             helper.popularFormulario(aluno);
         }
-
-
     }
 
     @Override
@@ -47,7 +45,13 @@ public class FormularioActivity extends AppCompatActivity {
             case R.id.menu_formulario_ok:
                 Aluno aluno = helper.getAluno();
                 AlunoDao dao = new AlunoDao(this);
-                dao.gravar(aluno);
+
+                if (aluno.getId() != null) {
+                    dao.alterar(aluno);
+                } else {
+                    dao.gravar(aluno);
+                }
+                
                 dao.close();
                 Toast.makeText(FormularioActivity.this, "Aluno " + aluno.getNome() + " salvo!", Toast.LENGTH_SHORT).show();
                 finish();
