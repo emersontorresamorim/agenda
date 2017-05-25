@@ -22,7 +22,16 @@ public class FormularioActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario);
+
         this.helper = new FormularioHelper(this);
+
+        Intent intent = getIntent();
+        Aluno aluno = (Aluno) intent.getSerializableExtra("aluno");
+        if (aluno != null) {
+            helper.popularFormulario(aluno);
+        }
+
+
     }
 
     @Override
